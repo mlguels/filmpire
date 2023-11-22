@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Box, Button, Grid, CircularProgress, Typography } from "@mui/material";
 import { useHistory, useParams } from "react-router-dom";
@@ -9,12 +9,13 @@ import {
   useGetActorsDetailsQuery,
   useGetMoviesByActorIdQuery,
 } from "../../services/TMDB";
-import { MovieList } from "..";
+import { MovieList, Pagination } from "..";
 
 const Actors = () => {
   const { id } = useParams();
   const history = useHistory();
   const classes = useStyles();
+  const [page, setPage] = useState(1);
 
   const { data, isFetching, error } = useGetActorsDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page: 1 });
@@ -95,6 +96,11 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </>
   );
