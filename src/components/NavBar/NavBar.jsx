@@ -59,7 +59,7 @@ const NavBar = () => {
     };
 
     logInUser();
-  }, [token]);
+  }, [dispatch, sessionIdFromLocalStorage, token]);
 
   return (
     <>
@@ -101,7 +101,7 @@ const NavBar = () => {
                 <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="Profile"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJXXqXq04P7x4lIRdFSTM40xumcdnytt6PAw&usqp=CAU"
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                 />
               </Button>
             )}

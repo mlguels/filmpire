@@ -22,6 +22,7 @@ import popular from "./popular.png";
 import topRated from "./top rated.png";
 import upcoming from "./upcoming.png";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   action,
   adventure,

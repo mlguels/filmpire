@@ -8,7 +8,6 @@ import {
   ListItemIcon,
   Box,
   CircularProgress,
-  collapseClasses,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/styles";
@@ -39,6 +38,10 @@ const Sidebar = ({ setMobileOpen }) => {
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName, setMobileOpen]);
+
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -53,10 +56,7 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem
-              onClick={() => dispatch(selectGenreOrCategory(value))}
-              button
-            >
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
                 <img
                   alt="genre icon"
@@ -80,10 +80,7 @@ const Sidebar = ({ setMobileOpen }) => {
         ) : (
           data.genres.map(({ name, id }) => (
             <Link key={name} className={classes.links} to="/">
-              <ListItem
-                onClick={() => dispatch(selectGenreOrCategory(id))}
-                button
-              >
+              <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
                 <ListItemIcon>
                   <img
                     alt="genre icon"
