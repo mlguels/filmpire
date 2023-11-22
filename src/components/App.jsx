@@ -1,10 +1,10 @@
-import React from 'react';
-import { CssBaseline } from '@mui/material';
-import { Route, Switch } from 'react-router-dom';
+import React from "react";
+import { CssBaseline } from "@mui/material";
+import { Route, Switch } from "react-router-dom";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 
-import { Actors, MovieInformation, Movies, NavBar, Profile } from '.';
+import { Actors, MovieInformation, Movies, NavBar, Profile } from ".";
 
 const App = () => {
   const classes = useStyles();
@@ -22,7 +22,7 @@ const App = () => {
           <Route exact path="/actors/:id">
             <Actors />
           </Route>
-          <Route exact path="/">
+          <Route exact path={["/", "/approved"]}>
             <Movies />
           </Route>
           <Route exact path="/profile/:id">
